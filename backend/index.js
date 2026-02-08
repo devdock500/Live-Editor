@@ -1,7 +1,7 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
-import path from "path";
+// import path from "path";
 import cors from "cors";
 import bodyParser from "body-parser";
 import pool from "./db.js";
@@ -265,11 +265,11 @@ io.on("connection", (socket) => {
   });
 });
 
-// Serve frontend
-app.use(express.static(path.join(__dirname, "../frontend/real-time-editor/dist")));
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/real-time-editor/dist", "index.html"));
-});
+// // Serve frontend
+// app.use(express.static(path.join(__dirname, "../frontend/real-time-editor/dist")));
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/real-time-editor/dist", "index.html"));
+// });
 
 const port = process.env.PORT || 5003;
 server.listen(port, () => {
