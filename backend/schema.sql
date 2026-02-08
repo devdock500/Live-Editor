@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS code_editor_db;
+USE code_editor_db;
+
+CREATE TABLE IF NOT EXISTS rooms (
+    room_id VARCHAR(255) PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS files (
+    file_id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id VARCHAR(255) NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    content LONGTEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_file_in_room (room_id, filename)
+);
